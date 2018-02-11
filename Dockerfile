@@ -19,7 +19,7 @@ RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.
 RUN tar -xf boost*
 RUN (cd boost* && ./bootstrap.sh --with-libraries=python && ./b2 install)
 RUN git clone https://github.com/mapnik/mapnik.git
-RUN (cd mapnik && git checkout ${MAPNIK_VERSION} && \
+RUN (cd mapnik && git checkout v${MAPNIK_VERSION} && \
     git submodule update --init && ./configure && make && make install)
 
 RUN rm -Rf *
