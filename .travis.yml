@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+    - REPO=consbio/python-gdal-mapnik
+
+script: 
+  - travis_wait 60 docker build -t $REPO:$COMMIT .
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker tag $REPO:$COMMIT $REPO:latest
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
