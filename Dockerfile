@@ -1,8 +1,9 @@
 FROM consbio/python3.6-gdal2
 
-ENV MAPNIK_VERSION 3.0.16
+ENV MAPNIK_VERSION 3.0.13
 ENV PYTHON python2
 ENV PATH /usr/local/bin:$PATH
+ENV BOOST_PYTHON_LIB boost_python
 
 WORKDIR /tmp
 
@@ -16,6 +17,10 @@ RUN git clone https://github.com/mapnik/mapnik.git
 RUN (cd mapnik && git checkout v${MAPNIK_VERSION} && \
     git submodule update --init && python2 scons/scons.py configure && \
     python2 scons/scons.py && python2 scons/scons.py install)
+
+RUN git clone https://github.com/mapnik/python-mapnik.git
+RUN (cd python-mapnik && git checkout v${MAPNIK_VERSION} && \
+    python setup.py install)
 
 RUN rm -Rf *
 
