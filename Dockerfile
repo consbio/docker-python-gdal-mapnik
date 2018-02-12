@@ -9,7 +9,9 @@ WORKDIR /tmp
 
 RUN apt-get -y update && apt install -y wget build-essential libbz2-dev \
     libsqlite3-dev libreadline-dev libncurses-dev libssl-dev libz-dev \
-    liblzma-dev git python libboost-all-dev
+    liblzma-dev git python libboost-all-dev libharfbuzz-dev libfreetype6-dev \
+    libjpeg-dev libproj-dev libpng-dev libwebp-dev libtiff5-dev libpq-dev \
+    libcairo-dev
 
 RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-3.6.4.tgz
 RUN tar -xf Python*
