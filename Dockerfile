@@ -9,15 +9,12 @@ WORKDIR /tmp
 
 RUN apt-get -y update && apt install -y wget build-essential libbz2-dev \
     libsqlite3-dev libreadline-dev libncurses-dev libssl-dev libz-dev \
-    liblzma-dev git python
+    liblzma-dev git python libboost-all-dev
 
 RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-3.6.4.tgz
 RUN tar -xf Python*
 RUN (cd Python* && ./configure && make && make install)
 
-RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.bz2
-RUN tar -xf boost*
-RUN (cd boost* && ./bootstrap.sh --with-libraries=python && ./b2 install)
 RUN git clone https://github.com/mapnik/mapnik.git
 RUN (cd mapnik && git checkout v${MAPNIK_VERSION} && \
     git submodule update --init && ./configure && make && make install)
