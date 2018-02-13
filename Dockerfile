@@ -14,7 +14,8 @@ RUN apt-get -y update && apt install -y wget build-essential libbz2-dev \
 
 RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
 RUN tar -xf boost*
-RUN (cd boost* && ./bootstrap.sh --with-libraries=python && ./b2 install)
+RUN (cd boost* && ./bootstrap.sh --with-libraries=python && \
+    CPLUS_INCLUDE_PATH=/usr/local/include/python3.6m/ ./b2 install)
 
 RUN git clone https://github.com/mapnik/mapnik.git
 RUN (cd mapnik && git checkout v${MAPNIK_VERSION} && \
