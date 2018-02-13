@@ -10,7 +10,7 @@ RUN apt-get -y update && apt install -y wget build-essential libbz2-dev \
     libsqlite3-dev libreadline-dev libncurses-dev libssl-dev libz-dev \
     liblzma-dev git python libboost-all-dev wget libharfbuzz-dev \
     libfreetype6-dev libjpeg-dev libproj-dev libpng-dev libwebp-dev \
-    libtiff5-dev libpq-dev libcairo-dev
+    libtiff5-dev libpq-dev libcairo-dev libicu-dev
 
 RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
 RUN tar -xf boost*
