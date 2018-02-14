@@ -23,7 +23,7 @@ RUN git clone https://github.com/mapnik/mapnik.git
 RUN (cd mapnik && git checkout v${MAPNIK_VERSION} && \
     git submodule update --init && python2 scons/scons.py configure \
     ICU_LIB=/usr/lib/x86_64-linux-gnu/ JOBS=2 && \
-    python2 scons/scons.py INPUT_PLUGINS=all && python2 scons/scons.py install)
+    python2 scons/scons.py && python2 scons/scons.py install)
 
 RUN git clone https://github.com/mapnik/python-mapnik.git
 RUN (cd python-mapnik && git checkout v${MAPNIK_VERSION} && \
